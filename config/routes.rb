@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+
+      post 'users/register', to: 'users#register'
+      post 'users/login', to: 'users#login'
+      get 'users/test', to: 'users#test'
+
+
       # devise_for :users, controllers: { sessions: 'sessions', registrations: 'api/v1/registrations' }
       # post 'login' => 'user_token#create'
       # resources :users, only: [:create]
@@ -22,9 +28,7 @@ Rails.application.routes.draw do
       #   post 'follow' => 'stars#follow'
       #   delete 'unfollow' => 'stars#unfollow'
       # end
-      post 'users/register', to: 'users#register'
-      post 'users/login', to: 'users#login'
-      get 'users/test', to: 'users#test'
+
     end
   end
  end
