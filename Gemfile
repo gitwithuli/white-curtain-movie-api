@@ -44,3 +44,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
+gem 'httparty', '~> 0.13.7'
+gem 'themoviedb', '~> 1.0', '>= 1.0.1'
+gem 'fast_jsonapi'
+

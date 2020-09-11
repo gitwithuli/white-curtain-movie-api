@@ -11,18 +11,18 @@ class Api::V1::MoviesController < ApplicationController
 
   def follow
     movie = Movie.find(params[:movie_id])
-    current_user.followed_movies.push movie
-    render json: MovieSerializer.new(current_user.followed_movies).serialized_json
+    @current_user.followed_movies.push movie
+    render json: MovieSerializer.new(@current_user.followed_movies).serialized_json
   end
 
   def unfollow
-    Follow.where(user_id: current_user.id, followable_type: "Movie",
+    Follow.where(user_id: @current_user.id, followable_type: "Movie",
       followable_id: params[:movie_id]).first.destroy
-    render json: MovieSerializer.new(current_user.followed_movies).serialized_json
+    render json: MovieSerializer.new(@current_user.followed_movies).serialized_json
   end
 
   def get_recommendations
-    recommendations = Movie.get_recommendations(current_user)
+    recommendations = Movie.get_recommendations(@current_user)
     render json: {
       by_genre: MovieSerializer.new(recommendations[:by_genre]).serializable_hash,
       by_stars: MovieSerializer.new(recommendations[:by_stars]).serializable_hash

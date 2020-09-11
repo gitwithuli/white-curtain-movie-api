@@ -31,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def test
-    render json: @current_user, status: 200
+    render json: UserSerializer.new(@current_user, {include: [:followed_movies, :followed_stars, :followed_genres]}).serialized_json
   end
 
   private
